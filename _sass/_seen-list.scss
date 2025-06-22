@@ -1,0 +1,72 @@
+// _sass/_film-list.scss (FINAL, ROBUST VERSION)
+
+.film-ordered-list {
+  list-style-type: decimal;
+  padding-left: 2em;
+  margin: 1.5em 0;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  li {
+    margin-bottom: 0.75em;
+    padding-left: 0.5em;
+  }
+}
+
+.film-link-item {
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+  color: $text-color;
+  transition: opacity .125s ease-in-out;
+  opacity: .8;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+    .film-title-text {
+      text-decoration: underline;
+    }
+  }
+}
+
+.film-title-text {
+  flex-shrink: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.film-dots {
+  flex-grow: 1;
+  border-bottom: 1px dotted $muted-text-color;
+  margin: 0 0.5em;
+  position: relative;
+  bottom: 4px;
+}
+
+.star-rating {
+  --star-background: #{$highlight};   // The bright, filled-in color. Your theme's pink.
+  --star-color: #{lighten($brand-color, 5%)}; // The muted/empty star color. A slightly lighter bg.
+  --star-size: 1em;
+  --percent: calc((var(--rating) / 5) * 100%);
+  
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times, 'Times New Roman', serif; // The star character looks good in Times
+  line-height: 1;
+  
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Hide the now-unnecessary span elements from our HTML
+.star-icon {
+  display: none;
+}

@@ -1,5 +1,9 @@
 *.gem
 .bundle
+.direnv
+.gems
+.github
+.envrc
 .sass-cache
 .jekyll-cache
 _site
