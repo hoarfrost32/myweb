@@ -1,7 +1,7 @@
 title: things & stuff
 email: aditya.tejpaul@research.iiit.ac.in
 description: >- # this means to ignore newlines until "baseurl:"
-  - Aditya Tejpaul
+  by Aditya Tejpaul
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.adityatejpaul.com" # the base hostname & protocol for your site, e.g. http://example.com
 icon: /assets/images/icon-512.png
