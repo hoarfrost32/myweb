@@ -3,6 +3,6 @@
 source "https://rubygems.org"
 gemspec
 
-# for demo site
+gem "jekyll"
 gem "jekyll-paginate"
 gem "jekyll-get-json"
