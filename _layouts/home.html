@@ -71,7 +71,13 @@ layout: default
   <h1 class="content-title divided" style="margin-top: 2em;">
     stuff I recently saw
   </h1>
-  
+
   {% include _latest_seen.html %}
+
+  <div style="text-align: center; margin-top: 1.5em; margin-bottom: 1.5em;">
+    <a href="https://letterboxd.com/{{ site.letterboxd.username }}" target="_blank" rel="noopener noreferrer" title="My Letterboxd Profile">
+      <img src="{{ '/assets/images/letterboxd.svg' | relative_url }}" alt="Letterboxd logo" style="height: 55px; width: auto;">
+    </a>
+  </div>
 
 </main>
