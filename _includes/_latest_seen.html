@@ -1,46 +1,5 @@
-{% if site.data.letterboxd_films.items and site.data.letterboxd_films.items.size > 0 %}
-  <ol class="film-ordered-list">
-    {% for film in site.data.letterboxd_films.items limit:5 %}
-      <li>
-        {%- assign rating_value = 0 -%}
-        {%- assign rating_string = "" -%}
-        {%- assign pre_formatted_title = film.title -%}
+<div id="letterboxd-latest">
+  <p>Loading films...</p>
+</div>
 
-        {%- if film.title contains ' - ★' -%}
-          {%- assign main_parts = film.title | split: ' - ' -%}
-          {%- assign pre_formatted_title = main_parts.first | strip -%}
-          {%- assign rating_string = main_parts.last | strip -%}
-        {%- endif -%}
-
-        {%- if rating_string != "" -%}
-          {%- assign half_star_count = 0 -%}
-          {%- if rating_string contains '½' -%}{%- assign half_star_count = 1 -%}{%- endif -%}
-          {%- assign rating_length = rating_string | size -%}
-          {%- assign rating_value = rating_length | minus: 0.0 -%}
-          {%- if half_star_count > 0 -%}{%- assign rating_value = rating_value | minus: 0.5 -%}{%- endif -%}
-        {%- endif -%}
-
-        {%- assign display_title = pre_formatted_title -%}
-        {%- assign title_parts = pre_formatted_title | split: ',' -%}
-        {%- assign last_part = title_parts.last | strip -%}
-        
-        {%- if last_part.size == 4 and (last_part | plus: 0) > 1880 -%}
-          {%- assign year = last_part -%}
-          {%- assign string_to_remove = ", " | append: year -%}
-          {%- assign base_title = pre_formatted_title | remove: string_to_remove -%}
-          {%- assign display_title = base_title | append: ' (' | append: year | append: ')' -%}
-        {%- endif -%}
-        
-        <a href="{{ film.link }}" target="_blank" rel="noopener noreferrer" class="film-link-item">
-          <span class="film-title-text">{{ display_title }}</span>
-          <span class="film-dots"></span>
-          
-          <div class="star-rating" style="--rating: {{ rating_value }};" aria-label="Rating: {{ rating_value }} out of 5 stars">
-          </div>
-        </a>
-      </li>
-    {% endfor %}
-  </ol>
-{% else %}
-  <p>Could not load films at build time.</p>
-{% endif %}
+<script src="{{ '/assets/js/letterboxd.js' | relative_url }}" defer></script>

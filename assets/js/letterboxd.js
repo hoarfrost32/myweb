@@ -1,0 +1,109 @@
+---
+---
+document.addEventListener("DOMContentLoaded", function() {
+    const username = "{{ site.letterboxd.username }}";
+    const container = document.getElementById("letterboxd-latest");
+
+    if (!container) {
+        // Silently return if the container element doesn't exist on the page.
+        return;
+    }
+
+    if (!username) {
+        container.innerHTML = "<p>Letterboxd username not configured.</p>";
+        return;
+    }
+
+    const rssUrl = `https://letterboxd.com/${username}/rss/`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+    container.innerHTML = "<p>Loading films...</p>";
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status !== 'ok' || !data.items || data.items.length === 0) {
+                throw new Error(data.message || "No films found in the feed.");
+            }
+
+            const films = data.items.slice(0, 5);
+            const filmList = document.createElement("ol");
+            filmList.className = "film-ordered-list";
+
+            films.forEach(film => {
+                let preFormattedTitle = film.title;
+                let ratingString = "";
+                let ratingValue = 0;
+
+                const ratingSeparator = ' - ';
+                const separatorIndex = preFormattedTitle.lastIndexOf(ratingSeparator);
+
+                // Check if the part after the last separator looks like a rating
+                if (separatorIndex !== -1) {
+                    const potentialRating = preFormattedTitle.substring(separatorIndex + ratingSeparator.length);
+                    if (potentialRating.startsWith('★') || potentialRating.startsWith('½')) {
+                        ratingString = potentialRating.trim();
+                        preFormattedTitle = preFormattedTitle.substring(0, separatorIndex).trim();
+                    }
+                }
+
+                if (ratingString) {
+                    const hasHalfStar = ratingString.includes('½');
+                    // This logic mimics the original Liquid template's calculation
+                    ratingValue = ratingString.length;
+                    if (hasHalfStar) {
+                        ratingValue -= 0.5;
+                    }
+                }
+
+                let displayTitle = preFormattedTitle;
+                const titleParts = preFormattedTitle.split(',');
+                const lastPart = titleParts.length > 1 ? titleParts[titleParts.length - 1].trim() : "";
+
+                if (lastPart.length === 4 && !isNaN(parseInt(lastPart, 10)) && parseInt(lastPart, 10) > 1880) {
+                    const year = lastPart;
+                    const baseTitle = titleParts.slice(0, -1).join(',').trim();
+                    displayTitle = `${baseTitle} (${year})`;
+                }
+
+                const listItem = document.createElement("li");
+
+                const link = document.createElement("a");
+                link.href = film.link;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.className = "film-link-item";
+
+                const titleSpan = document.createElement("span");
+                titleSpan.className = "film-title-text";
+                titleSpan.textContent = displayTitle;
+
+                const dotsSpan = document.createElement("span");
+                dotsSpan.className = "film-dots";
+
+                const ratingDiv = document.createElement("div");
+                ratingDiv.className = "star-rating";
+                ratingDiv.style.setProperty('--rating', ratingValue);
+                ratingDiv.setAttribute("aria-label", `Rating: ${ratingValue} out of 5 stars`);
+
+                link.appendChild(titleSpan);
+                link.appendChild(dotsSpan);
+                link.appendChild(ratingDiv);
+                listItem.appendChild(link);
+                filmList.appendChild(listItem);
+            });
+
+            container.innerHTML = "";
+            container.appendChild(filmList);
+
+        })
+        .catch(error => {
+            console.error("Letterboxd Fetch Error:", error);
+            container.innerHTML = "<p>Could not load films.</p>";
+        });
+});
