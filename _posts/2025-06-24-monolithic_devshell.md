@@ -204,12 +204,10 @@ Standard Go Template
                 pkgs.go
                 pkgs.gopls     # lsp
                 pkgs.delve     # debugger
-                pkgs.protobuf  # protoc compiler
-                pkgs.openssl   # generating SSL certificates
               ];
     
               shellHook = ''
-                echo "✅ Go environment loaded."
+                echo "Go environment loaded."
                 
                 # Define absolute paths for Go environment variables
                 export PROJECT_ROOT="$(pwd)"
@@ -219,13 +217,13 @@ Standard Go Template
                 export GOCACHE="$GOPATH/pkg/cache"
     
                 # Create directories if they don't exist
-                mkdir -p "$GOPATH"
-                mkdir -p "$GOBIN"
-                mkdir -p "$GOMODCACHE"
-                mkdir -p "$GOCACHE"
-                export PATH="$GOBIN:$PATH"
+                mkdir -p "''${GOPATH}"
+                mkdir -p "''${GOBIN}"
+                mkdir -p "''${GOMODCACHE}"
+                mkdir -p "''${GOCACHE}"
+                export PATH="''${GOBIN}:''$PATH"
     
-                echo "GOPATH is set to: $GOPATH"
+                echo "GOPATH is set to: ''${GOPATH}"
               '';
             };
           }
