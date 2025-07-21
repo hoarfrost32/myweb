@@ -16,7 +16,7 @@ I work at the Computer Systems Group at IIIT-H, under the advice of <a href="htt
 I love all things functional programming, computer architecture, operating systems and compilers[^1]. I also love using (and telling everyone about) NixOS[^2], a linux distribution centered around the nix package manager, which itself is written in a purely functional language also called nix. When I have some free time I'm probably watching a film or spending time with my cat. 
 
 <figure>
-  <img alt="A photo of my cat." src="./assets/images/mycat.png" class="image" />
+  <img alt="A photo of my cat." src="./assets/images/qr.png" class="image" />
   <figcaption> My Cat </figcaption>
 </figure>
 
