@@ -23,6 +23,9 @@ exclude:
 #   - vendor/gems/
 #   - vendor/ruby/
 
+include:
+  - _scripts
+
 plugins:
   - jekyll-paginate
 
