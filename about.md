@@ -9,7 +9,7 @@ I am Aditya Tejpaul, a 5th year CS student and researcher at IIIT Hyderabad, Ind
   <img alt="A photo of me." src="./assets/images/small-profile.jpg" class="image" />
 </figure>
 
-I work at the Computer Systems Group at IIIT-H, under the advice of <a href="https://scholar.google.co.in/citations?user=m8_F5SoAAAAJ&hl=en">Dr. Suresh Purini</a>. My work focuses on building novel deep learning architectures & end-to-end pipelines for predictive analysis of complex genomic data. The key application is accelerating genomic selection to create more climate-resilient and productive crops.
+I work at the Computer Systems Group at IIIT-H, under the advice of <a href="https://scholar.google.co.in/citations?user=m8_F5SoAAAAJ&hl=en">Dr. Suresh Purini</a>. I am developing a digital twin framework of cities that simulates vehicular and pedestrian traffic using probabilistic modeling and forecasted data. The core of this framework is its integration with a large language model, which allows users to query complex traffic scenarios using simple text-based commands.
 
 <br>
 
