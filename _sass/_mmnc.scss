@@ -1,0 +1,23 @@
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1em;
+
+  @media (min-width: 480px) {
+    column-count: 2;
+  }
+
+  @media (min-width: 768px) {
+    column-count: 3;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1em;
+
+  img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+  }
+}

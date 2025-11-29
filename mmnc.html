@@ -1,0 +1,21 @@
+---
+layout: post
+title: "In Memory"
+permalink: /mmnc/
+---
+
+<div style="text-align: center; margin-bottom: 30px; font-size: 1.1em; opacity: 0.9;">
+  mmnc (Late 2022 - 18th November, 2025)
+</div>
+
+<div class="masonry-grid">
+  {% for file in site.static_files %}
+  {% if file.path contains 'assets/images/mmnc/' %}
+  <div class="masonry-item">
+    <img src="{{ file.path | relative_url }}" loading="lazy">
+  </div>
+
+  {% endif %}
+  {% endfor %}
+
+</div>

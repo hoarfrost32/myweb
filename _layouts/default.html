@@ -1,53 +1,58 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
-  <head>
+<html lang="{{ page.lang | default: site.lang | default: " en" }}">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
 
-    <title>{{ site.title }}{% if page.title and page.title != "" %} &mdash; {{ page.title }}{% endif %}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {% if site.description %}<meta name="description" content="{{ site.description }}">{% endif %}
+  <title>{{ site.title }}{% if page.title and page.title != "" %} &mdash; {{ page.title }}{% endif %}</title>
 
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | absolute_url }}?{{ site.time | date: '%s%N' }}">
+  {% if site.description %}
+  <meta name="description" content="{{ site.description }}">{% endif %}
 
-    <link rel="apple-touch-icon" href="{{ site.icon | absolute_url }}?{{ site.time | date: '%s%N' }}">
-    <link rel="icon" href="{{ "/favicon.ico" | absolute_url }}?{{ site.time | date: '%s%N' }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | absolute_url }}?{{ site.time | date: '%s%N' }}">
 
-    {%- if jekyll.environment == 'production' and site.google_analytics -%}
-      {%- include google-analytics.html -%}
-    {%- endif -%}
+  <link rel="apple-touch-icon" href="{{ site.icon | absolute_url }}?{{ site.time | date: '%s%N' }}">
+  <link rel="icon" href="{{ " /favicon.ico" | absolute_url }}?{{ site.time | date: '%s%N' }}">
 
-  </head>
-  <body>
+  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+  {%- include google-analytics.html -%}
+  {%- endif -%}
 
-    {% if page.layout == 'home' %}
-      <a href="#main" class="skip-navigation">
-        Skip to list of posts
-      </a>
-    {% else %}
-      <a href="#main" class="skip-navigation">
-        Skip to content
-      </a>
-    {% endif %}
+</head>
 
-    {{ content }}
+<body>
 
-    {% unless site.hide_search %}
-      {% include search.html %}
-    {% endunless %}
+  {% if page.layout == 'home' %}
+  <a href="#main" class="skip-navigation">
+    Skip to list of posts
+  </a>
+  {% else %}
+  <a href="#main" class="skip-navigation">
+    Skip to content
+  </a>
+  {% endif %}
 
-    {% include menu.html %}
+  {{ content }}
 
-    {% unless site.hide_credits %}
-      <aside class="site-credits">
-        <p>
-          <small><a href="https://github.com/patdryburgh/hitchens">Hitchens Theme</a> powered by <a href="http://jekyllrb.com">Jekyll</a></small>
-        </p>
-      </aside>
-    {% endunless %}
+  {% unless site.hide_search %}
+  {% include search.html %}
+  {% endunless %}
 
-    <script src="{{ '/_scripts/copy-button.js' | absolute_url }}?{{ site.time | date: '%s%N' }}"></script>
-  </body>
+  {% include menu.html %}
+
+  {% unless site.hide_credits %}
+  <aside class="site-credits">
+    <p>
+      <small><a href="https://github.com/patdryburgh/hitchens">Hitchens Theme</a> powered by <a
+          href="http://jekyllrb.com">Jekyll</a></small>
+    </p>
+  </aside>
+  {% endunless %}
+
+  <script src="{{ '/_scripts/copy-button.js' | absolute_url }}?{{ site.time | date: '%s%N' }}"></script>
+</body>
+
 </html>
